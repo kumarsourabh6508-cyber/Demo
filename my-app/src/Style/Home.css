@@ -1,0 +1,90 @@
+.hero{
+    width:90%;
+    margin:60px auto;
+
+    background:#32c5ff65;
+
+    border-radius:40px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:60px;
+}
+
+.left{
+    width:50%;
+}
+
+.offer{
+
+    color:#fff;
+    font-size:18px;
+}
+
+.left h1{
+
+    font-size:60px;
+    margin:20px 0;
+    color:#222;
+}
+
+.left span{
+
+    color:#ff3d3d;
+    text-shadow: 3px 4px 2px black;
+}
+
+.left p{
+
+    color:#555;
+    line-height:30px;
+    margin-bottom:30px;
+}
+
+.searchBox{
+
+    display:flex;
+    gap:10px;
+}
+
+.searchBox input{
+
+    width:300px;
+    height:45px;
+
+    border:none;
+    border-radius:30px;
+
+    padding-left:20px;
+}
+
+.searchBox button{
+
+    width:130px;
+    height: 40px;
+    font-size: 18px;
+
+    border:none;
+
+    background:#ff6b3d;
+    color:white;
+
+    border-radius:30px;
+
+    cursor:pointer;
+}
+
+.right{
+
+    width:40%;
+    display:flex;
+    justify-content:center;
+}
+
+.right img{
+
+    width:380px;
+    filter: drop-shadow(3px 4px 2px black);
+}
