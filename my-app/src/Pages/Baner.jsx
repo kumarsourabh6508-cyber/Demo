@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Style/Home.css'
+import '../Styles/Baner.css'
 import Shop from "../Assets/shop.png";
 const Home = () => {
   return (
@@ -7,12 +7,12 @@ const Home = () => {
 
       <div className="left">
 
-        <span className="offer">🔥 Hurry Sale!</span>
+        <p className="offer hurr">🔥 Hurry Sale!</p>
 
         <h1>
           Buy Two,
           <br />
-          Get <span>25% Discount</span>
+          Get <span>50% Discount</span>
         </h1>
 
         <p>

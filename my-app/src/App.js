@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import Navber from './Commponent/Navber';
-import Home from './page/Home';
-import Prodect from './page/Prodect';
-import Footer from './Commponent/Footer';
+import Navber from './Commponents/Navber';
+import Home from './Pages/Baner';
+import Prodect from './Pages/Prodect';
+import Footer from './Commponents/Footer';
 
 
 function App() {

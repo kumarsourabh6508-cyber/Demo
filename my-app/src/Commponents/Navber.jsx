@@ -1,5 +1,5 @@
 import React from 'react'
-import "../Style/Navber.css";
+import "../Styles/Navber.css";
 import Shop from "../Assets/shop.png";
 const Navber = () => {
   return (
