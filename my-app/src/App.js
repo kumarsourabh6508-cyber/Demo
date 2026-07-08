@@ -2,8 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 import Navber from './Commponents/Navber';
 import Home from './Pages/Baner';
-import Prodect from './Pages/Prodect';
+import Shop_Card_Data from './Commponents/Shop_Card_Data';
+ import {Data} from './Data/Prodect_Data.jsx';
 import Footer from './Commponents/Footer';
+
+
 
 
 function App() {
@@ -11,7 +14,9 @@ function App() {
     <div>
         <Navber /> 
         <Home /> 
-        <Prodect /> 
+         {Object.keys(Data).map((key) => (
+           <Shop_Card_Data name={key} Prodect={Data[key]} />
+         ))}
         <Footer /> 
 
     </div>

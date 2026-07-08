@@ -2,24 +2,40 @@
     width:90%;
     margin:60px auto;
 
-    background:#32c5ff65;
-
+    
+ background-color: rgb(165, 163, 163);
     border-radius:40px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
-
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
     padding:60px;
 }
-
-.left{
-    width:50%;
+.hero::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+   background:#32c5ff65;
+    z-index: -1;
+    transition: .8s;
+}
+.hero:hover::before
+{
+    width: 0;
+    top: 0;
+    left: 0;
+    height: 0;
 }
 
 .offer{
 
-    color:#fff;
+    color:#ffffff;
     font-size:18px;
    
 }
@@ -31,18 +47,20 @@
 
     font-size:60px;
     margin:20px 0;
-    color:#222;
+    color:#009af3;
+    text-shadow: 2px 3px 4px blue;
 }
 
 .left span{
 
     color:#ff3d3d;
-    text-shadow: 3px 4px 2px black;
+    text-shadow: 3px 4px 2px rgb(59, 59, 59);
 }
 
 .left p{
-
+    font-weight: 700;
     color:#555;
+    font-size:18px;
     line-height:30px;
     margin-bottom:30px;
 }

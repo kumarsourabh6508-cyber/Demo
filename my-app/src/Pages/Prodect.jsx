@@ -1,8 +1,15 @@
 import React from 'react'
-
-const Prodect = () => {
+import '../Styles/Prodect.css'
+const Prodect = ({ Prodect }) => {
   return (
-    <div></div>
+    <div className='card'>
+      <img src={Prodect.url}  />
+         <div className="Text">
+          <h1>{Prodect.name}</h1>
+         <p>{Prodect.price}/.</p>
+         <button>Buy Now!</button>
+         </div>
+    </div>
   )
 }
 

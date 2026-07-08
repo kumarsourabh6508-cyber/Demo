@@ -1,0 +1,16 @@
+.main{
+  margin: 50px;
+  padding: 10px;
+}
+h1{
+  font-size: 55px;
+  color: #e63939;
+  text-shadow: 3px 3px 3px #4d1c1c;
+}
+.card_data {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
