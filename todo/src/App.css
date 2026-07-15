@@ -1,0 +1,147 @@
+Google Font
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:420px;
+    background:#fff;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+.container h1{
+    text-align:center;
+    margin-bottom:25px;
+    color:#333;
+}
+
+form{
+    display:flex;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+form input{
+    flex:1;
+    padding:12px 15px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    font-size:16px;
+    transition:.3s;
+}
+
+form input:focus{
+    border-color:#667eea;
+}
+
+form button{
+    width:55px;
+    border:none;
+    background:#667eea;
+    color:#fff;
+    border-radius:10px;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+}
+
+form button:hover{
+    background:#4f5bd5;
+    transform:scale(1.05);
+}
+
+.todo-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.todo-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    background:#f8f8f8;
+    padding:14px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.todo-item:hover{
+    background:#ececec;
+}
+
+.todo-item input[type="checkbox"]{
+    width:20px;
+    height:20px;
+    cursor:pointer;
+}
+
+.todo-item p{
+    flex:1;
+    font-size:16px;
+    color:#333;
+    word-break:break-word;
+}
+
+.todo-item button{
+    width:40px;
+    height:40px;
+    border:none;
+    background:#ff4d4f;
+    color:#fff;
+    border-radius:10px;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+}
+
+.todo-item button:hover{
+    background:#d9363e;
+    transform:scale(1.08);
+}
+
+.todo-list p{
+    text-align:center;
+    color:#888;
+    font-size:16px;
+}
+
+/* Responsive */
+
+@media(max-width:500px){
+
+.container{
+    width:95%;
+    padding:20px;
+}
+
+form input{
+    font-size:14px;
+}
+
+.todo-item p{
+    font-size:14px;
+}
+
+}

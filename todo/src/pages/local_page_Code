@@ -1,0 +1,207 @@
+import { useState, useEffect } from "react";
+import { SquarePlus, Trash2, Pencil, Check, X } from "lucide-react";
+import "./App.css";
+
+function App() {
+  const [input, setInput] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [filter, setFilter] = useState("all");
+  const [editId, setEditId] = useState(null);
+
+  // Load Local Storage
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("todos"));
+
+    if (saved) {
+      setTodos(saved);
+    }
+  }, []);
+
+  // Save Local Storage
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  // Add / Update Todo
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (input.trim() === "") return;
+
+    if (editId) {
+      setTodos(
+        todos.map((todo) =>
+          todo.id === editId ? { ...todo, text: input } : todo
+        )
+      );
+
+      setEditId(null);
+    } else {
+      const newTodo = {
+        id: Date.now(),
+        text: input,
+        completed: false,
+      };
+
+      setTodos([...todos, newTodo]);
+    }
+
+    setInput("");
+  };
+
+  // Delete Todo
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  // Complete Todo
+  const toggleTodo = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id
+          ? { ...todo, completed: !todo.completed }
+          : todo
+      )
+    );
+  };
+
+  // Edit Todo
+  const editTodo = (todo) => {
+    setInput(todo.text);
+    setEditId(todo.id);
+  };
+
+  // Clear Completed
+  const clearCompleted = () => {
+    setTodos(todos.filter((todo) => !todo.completed));
+  };
+
+  // Filter
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "active") return !todo.completed;
+
+    if (filter === "completed") return todo.completed;
+
+    return true;
+  });
+
+  return (
+    <div className="container">
+
+      <div className="todo-box">
+
+        <h1>Todo App</h1>
+
+        <form onSubmit={handleSubmit}>
+
+          <input
+            type="text"
+            placeholder="Enter Task..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+
+          <button>
+            <SquarePlus size={22} />
+          </button>
+
+        </form>
+
+        <div className="filters">
+
+          <button
+            onClick={() => setFilter("all")}
+            className={filter === "all" ? "active" : ""}
+          >
+            All
+          </button>
+
+          <button
+            onClick={() => setFilter("active")}
+            className={filter === "active" ? "active" : ""}
+          >
+            Active
+          </button>
+
+          <button
+            onClick={() => setFilter("completed")}
+            className={filter === "completed" ? "active" : ""}
+          >
+            Completed
+          </button>
+
+        </div>
+
+        <ul>
+
+          {filteredTodos.map((todo) => (
+
+            <li key={todo.id}>
+
+              <div
+                className={`task ${todo.completed ? "done" : ""}`}
+              >
+                {todo.text}
+              </div>
+
+              <div className="actions">
+
+                <button
+                  className="check"
+                  onClick={() => toggleTodo(todo.id)}
+                >
+                  {todo.completed ? <X size={18} /> : <Check size={18} />}
+                </button>
+
+                <button
+                  className="edit"
+                  onClick={() => editTodo(todo)}
+                >
+                  <Pencil size={18} />
+                </button>
+
+                <button
+                  className="delete"
+                  onClick={() => deleteTodo(todo.id)}
+                >
+                  <Trash2 size={18} />
+                </button>
+
+              </div>
+
+            </li>
+
+          ))}
+
+        </ul>
+
+        <div className="bottom">
+
+          <span>Total : {todos.length}</span>
+
+          <span>
+            Completed :
+            {todos.filter((t) => t.completed).length}
+          </span>
+
+          <span>
+            Remaining :
+            {todos.filter((t) => !t.completed).length}
+          </span>
+
+        </div>
+
+        <button
+          className="clear"
+          onClick={clearCompleted}
+        >
+          Clear Completed
+        </button>
+
+      </div>
+
+    </div>
+  );
+}
+
+export default App;

@@ -1,24 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import Navber from './Commponents/Navber';
-import Home from './Pages/Baner';
-import Shop_Card_Data from './Commponents/Shop_Card_Data';
- import {Data} from './Data/Prodect_Data.jsx';
-import Footer from './Commponents/Footer';
 
+import './App.css';
+import Todo from './Commponents/Todos';
 
 
 
 function App() {
   return (
     <div>
-        <Navber /> 
-        <Home /> 
-         {Object.keys(Data).map((key) => (
-           <Shop_Card_Data name={key} Prodect={Data[key]} />
-         ))}
-        <Footer /> 
-
+      
+ <todo /> 
     </div>
   );
 }
