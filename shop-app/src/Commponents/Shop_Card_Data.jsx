@@ -15,4 +15,4 @@ const Shop_Card_Data = ({name , Prodect}) => {
   )
 }
 
-export default Shop_Card_Data
+export default Shop_Card_Data   

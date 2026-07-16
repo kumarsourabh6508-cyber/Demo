@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Styles/Baner.css'
 import Shop from "../Assets/shop.png";
-const Home = () => {
+const Baner = () => {
   return (
     <div className="hero">
 
@@ -34,4 +34,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Baner
