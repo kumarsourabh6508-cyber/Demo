@@ -1,102 +1,146 @@
 import React, { useEffect, useState } from 'react'
-import { SquarePlus ,  Trash2 } from "lucide-react";
-import {v4 as uuid} from 'uuid'
+import { SquarePlus, Trash2, Pencil, Check } from "lucide-react";
+import { v4 as uuid } from 'uuid'
 import '../src/styles/AppC.css'
+
 const App = () => {
   const [input, setInput] = useState('');
   const [todo, setTodo] = useState([]);
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState('');
 
   const handelForm = (e) => {
     e.preventDefault();
-    console.log(input)
     if (input.trim() === '') return;
-    const newData = {id : uuid() , task : input , completed : false }
+    const newData = { id: uuid(), task: input, completed: false };
     setTodo([...todo, newData]);
     setInput('');
-
   }
 
- const handelCompleted = (id) => {
-  const updataTodos = todo.map((obj) => {
-    if (obj.id === id) {
-       return{ ...obj , completed : !obj.completed}
+  const handelCompleted = (id) => {
+    const updataTodos = todo.map((obj) => {
+      if (obj.id === id) {
+        return { ...obj, completed: !obj.completed }
+      }
+      return obj;
+    })
+    setTodo(updataTodos);
+  }
+
+  const handelDalete = (id) => {
+    const upData = todo.filter((obj) => obj.id !== id);
+    setTodo(upData);
+  };
+
+  // Edit start
+  const handelEditStart = (data) => {
+    setEditId(data.id);
+    setEditText(data.task);
+  };
+
+  // Edit save
+  const handelEditSave = (id) => {
+    if (editText.trim() === '') return;
+    const updataTodos = todo.map((obj) => {
+      if (obj.id === id) {
+        return { ...obj, task: editText };
+      }
+      return obj;
+
+    });
+    setTodo(updataTodos);
+    setEditId(null);
+    setEditText('');
+  };
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('todo');
+    if (storedData) {
+      setTodo(JSON.parse(storedData))
     }
-    return obj ; 
-  })
+  }, []);
 
-  setTodo(updataTodos);
- }
+  useEffect(() => {
+    localStorage.setItem('todo', JSON.stringify(todo))
+  }, [todo])
 
- const handelDalete = (id) => {
-    const  upData = todo.filter((obj ) => obj.id !== id);
-         setTodo(upData);
- };
+  return (
+    <div className="container">
 
- useEffect(() => {
-  const storedData = localStorage.getItem('todo');
-       if (storedData) {
-         setTodo(JSON.parse(storedData))
-       }
- },[]);
+      <h1>Todo App</h1>
 
- useEffect(() => {
-  localStorage.setItem('todo' , JSON.stringify(todo))
- },[todo])
+      <form onSubmit={handelForm}>
+        <input
+          type="text"
+          placeholder="Enter Your Task..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
 
- return (
-  <div className="container">
+        <button type="submit">
+          <SquarePlus size={20} />
+        </button>
+      </form>
 
-    <h1>Todo App</h1>
+      <div className="todo-list">
 
-    <form onSubmit={handelForm}>
-      <input
-        type="text"
-        placeholder="Enter Your Task..."
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
+        {todo.length === 0 ? (
+          <p>hell Enter your task </p>
+        ) : (
+          todo.map((data) => (
+            <div className="todo-item" key={data.id}>
 
-      <button type="submit">
-        <SquarePlus size={20} />
-      </button>
-    </form>
+              <input
+                type="checkbox"
+                checked={data.completed}
+                onChange={() => handelCompleted(data.id)}
+              />
 
-    <div className="todo-list">
+              {editId === data.id ? (
+                <input
+                  type="text"
+                  className="edit-input"
+                  value={editText}
+                  autoFocus
+                  onChange={(e) => setEditText(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') handelEditSave(data.id);
+                  }}
+                />
+              ) : (
+                <p
+                  style={{
+                    textDecoration: data.completed
+                      ? "line-through"
+                      : "none",
+                  }}
+                >
+                  {data.task}
+                </p>
+              )}
 
-      {todo.length === 0 ? (
-        <p>hell Enter your task </p>
-      ) : (
-        todo.map((data) => (
-          <div className="todo-item" key={data.id}>
+              {editId === data.id ? (
+                <button onClick={() => handelEditSave(data.id)}>
+                  <Check size={18} />
+                </button>
+              ) : (
+                <button onClick={() => handelEditStart(data)}>
+                  <Pencil size={18} />
+                </button>
+              )}
 
-            <input
-              type="checkbox"
-              checked={data.completed}
-              onChange={() => handelCompleted(data.id)}
-            />
+              <button onClick={() => handelDalete(data.id)}>  
+                <Trash2 size={18} />
+              </button>
 
-            <p
-              style={{
-                textDecoration: data.completed
-                  ? "line-through"
-                  : "none",
-              }}
-            >
-              {data.task}
-            </p>
+            </div>
+          ))
+        )}
 
-            <button onClick={() => handelDalete(data.id)}>
-              <Trash2 size={18} />
-            </button>
-
-          </div>
-        ))
-      )}
+      </div>
 
     </div>
-
-  </div>
-);
+  );
 }
 
 export default App
