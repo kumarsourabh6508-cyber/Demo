@@ -131,6 +131,7 @@ function Navbar() {
     <nav>
       <NavLink to="/" className={({ isActive }) => isActive ? "active-link" : ""}>Home</NavLink>
       <NavLink to="/clock" className={({ isActive }) => isActive ? "active-link" : ""}>Clock</NavLink>
+       <NavLink to="/Alarm" className={({ isActive }) => isActive ? "active-link" : ""}>Alarm</NavLink>
     </nav>
   )
 }
