@@ -1,4 +1,4 @@
-/* Google Font */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 *{
@@ -127,7 +127,6 @@ form button:hover{
     font-size:16px;
 }
 
-/* Responsive */
 
 @media(max-width:500px){
 
