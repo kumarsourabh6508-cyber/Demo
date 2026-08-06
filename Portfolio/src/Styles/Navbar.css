@@ -1,0 +1,201 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 900;
+
+  min-height: 78px;
+  padding: 0 6%;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 30px;
+
+  background: rgba(5, 5, 5, 0.94);
+
+  border-bottom: 1px solid rgba(255, 214, 10, 0.18);
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(255, 214, 10, 0.05);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Brand */
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand h1 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+
+  color: var(--yellow);
+
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+
+  text-shadow: 0 0 18px rgba(211, 211, 210, 0.89);
+}
+
+.navbar-brand h1 span {
+  color: var(--white);
+
+  font-size: 25px;
+  font-weight: 600;
+  text-shadow: 0 2px 12px rgb(255, 214, 12);
+  text-shadow: none;
+}
+
+/* Navigation */
+
+.navbar-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+}
+
+.navbar-link {
+  position: relative;
+
+  padding: 11px 13px;
+
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: var(--gray);
+
+  font-size: 20px;
+  font-weight: 500;
+
+  border-radius: 9px;
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.navbar-link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.navbar-link:hover {
+  color: var(--yellow);
+  background: rgba(255, 214, 10, 0.07);
+
+  transform: translateY(-1px);
+}
+
+.navbar-link.active {
+  color: var(--yellow);
+  background: rgba(255, 214, 10, 0.08);
+}
+
+.navbar-link.active::after {
+  content: "";
+
+  position: absolute;
+  right: 13px;
+  bottom: 2px;
+  left: 13px;
+
+  height: 3px;
+
+  background: var(--yellow);
+  border-radius: 20px;
+
+  box-shadow:
+    0 0 8px var(--yellow),
+    0 0 16px rgba(255, 214, 10, 0.45);
+}
+
+/* Signup button */
+
+.signup-button {
+  min-width: 110px;
+  padding: 11px 20px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--black);
+  background: var(--yellow);
+
+  border: 1px solid var(--yellow);
+  border-radius: 30px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  box-shadow: 0 0 18px rgba(255, 214, 10, 0.14);
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.signup-button:hover {
+  color: var(--yellow);
+  background: transparent;
+
+  box-shadow: 0 0 22px rgba(255, 214, 10, 0.35);
+
+  transform: translateY(-2px);
+}
+
+@media (max-width: 950px) {
+  .navbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .navbar-navigation {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .navbar {
+    min-height: 68px;
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .navbar-brand h1 {
+    font-size: 24px;
+  }
+
+  .navbar-brand h1 span {
+    font-size: 12px;
+  }
+
+  .signup-button {
+    min-width: 90px;
+    padding: 9px 13px;
+
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 380px) {
+  .navbar-brand h1 span {
+    display: none;
+  }
+}
